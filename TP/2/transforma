@@ -1,0 +1,4 @@
+#! /usr/bin/perl -p
+s!title: *(.*)!<h1>$1</h1>!;
+s!(author|singer|lyrics): *(.*)!<hr><h2>$2</h2><small>$1</small>!;
+s!^\n!<p>\n</p>!;
