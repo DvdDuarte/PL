@@ -32,4 +32,6 @@ s!^\n!<p>\n</p>!;
 === Comando a usar
 ```Shell
 $ perl -pe 's!title: *(.*)!<h1>$1</h1>!' grande.txt > _2.html 
+$ sed -rn '/title:/p; s!title:!!' grande.txt
+$ sed -rn '/title:/p; s!author:!! s!;!\n!g p' grande.txt
 ```
