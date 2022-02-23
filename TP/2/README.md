@@ -34,4 +34,13 @@ s!^\n!<p>\n</p>!;
 $ perl -pe 's!title: *(.*)!<h1>$1</h1>!' grande.txt > _2.html 
 $ sed -rn '/title:/p; s!title:!!' grande.txt
 $ sed -rn '/title:/p; s!author:!! s!;!\n!g p' grande.txt
+$ sed -rn '/author:/ s!author: !!p' grande.txt | sed -r 's!\s*;\s*!n!g' | sort |uniq -c | sort -n
+$ sed -rn '/<abc>/,/<./abc>/p' grande.txt > x.abc
+$ abcmidi x.abc
+$ abcmtops
+$ grep -P -zo '<abc>.*' grande.txt 
+$ grep -P -zo '<abc>(.*\n)' grande.txt
+$ grep -P -zo '<abc>(.*\n)</abc>' grande.txt
+$ grep -P -zo '<abc>(.*\n)*?</abc>' grande.txt
+$ grep -P -zo '<abc>[^<]*</abc>' grande.txt
 ```
