@@ -44,3 +44,56 @@ $ grep -P -zo '<abc>(.*\n)</abc>' grande.txt
 $ grep -P -zo '<abc>(.*\n)*?</abc>' grande.txt
 $ grep -P -zo '<abc>[^<]*</abc>' grande.txt
 ```
+## TPC
+#### 1
+qqcoisa AA---
+procurar acordes de viola em linhas sendo que estão separados por 2 ou mais espaços
+
+#### 2
+
+trazer 2 exercicios inventados por nos na substituiçaõ/remoção de algo
+extrair/criar desenvolver enunciado e resolução
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
