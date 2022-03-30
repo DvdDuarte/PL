@@ -1,0 +1,10 @@
+@techreport{Camila,
+  author ={{projecto Camila}},
+  editor ={L.S. Barbosa and J.J. Almeida and J.N. Oliveira and Luís Neves},
+  title = "\textsc{Camila} - A Platform for Software Mathematical Development",
+  url="http://camila.di.uminho.pt",
+  type="(Páginas do projecto)",
+  institution = umdi,
+  year=1998,
+  keyword = "FS",
+}
