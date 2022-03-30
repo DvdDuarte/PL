@@ -54,7 +54,7 @@ def p_Elemento(p):
 
 def p_error(p):
     print("Error", p)
-    parser.errp = True
+    parser.erro = True
 
 parser = yacc.yacc()
 

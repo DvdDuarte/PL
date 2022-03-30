@@ -1,0 +1,145 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> Lista
+Rule 1     Lista -> ABRIR Elementos FECHAR
+Rule 2     Elementos -> Elementos SEP Elemento
+Rule 3     Elementos -> empty
+Rule 4     Elementos -> Elemento
+Rule 5     Elemento -> NUM
+Rule 6     Elemento -> START
+Rule 7     Elemento -> END
+Rule 8     empty -> <empty>
+
+Terminals, with rules where they appear
+
+ABRIR                : 1
+END                  : 7
+FECHAR               : 1
+NUM                  : 5
+SEP                  : 2
+START                : 6
+error                : 
+
+Nonterminals, with rules where they appear
+
+Elemento             : 2 4
+Elementos            : 1 2
+Lista                : 0
+empty                : 3
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Lista
+    (1) Lista -> . ABRIR Elementos FECHAR
+
+    ABRIR           shift and go to state 2
+
+    Lista                          shift and go to state 1
+
+state 1
+
+    (0) S' -> Lista .
+
+
+
+state 2
+
+    (1) Lista -> ABRIR . Elementos FECHAR
+    (2) Elementos -> . Elementos SEP Elemento
+    (3) Elementos -> . empty
+    (4) Elementos -> . Elemento
+    (8) empty -> .
+    (5) Elemento -> . NUM
+    (6) Elemento -> . START
+    (7) Elemento -> . END
+
+    FECHAR          reduce using rule 8 (empty -> .)
+    SEP             reduce using rule 8 (empty -> .)
+    NUM             shift and go to state 6
+    START           shift and go to state 7
+    END             shift and go to state 8
+
+    Elementos                      shift and go to state 3
+    Elemento                       shift and go to state 4
+    empty                          shift and go to state 5
+
+state 3
+
+    (1) Lista -> ABRIR Elementos . FECHAR
+    (2) Elementos -> Elementos . SEP Elemento
+
+    FECHAR          shift and go to state 9
+    SEP             shift and go to state 10
+
+
+state 4
+
+    (4) Elementos -> Elemento .
+
+    FECHAR          reduce using rule 4 (Elementos -> Elemento .)
+    SEP             reduce using rule 4 (Elementos -> Elemento .)
+
+
+state 5
+
+    (3) Elementos -> empty .
+
+    FECHAR          reduce using rule 3 (Elementos -> empty .)
+    SEP             reduce using rule 3 (Elementos -> empty .)
+
+
+state 6
+
+    (5) Elemento -> NUM .
+
+    FECHAR          reduce using rule 5 (Elemento -> NUM .)
+    SEP             reduce using rule 5 (Elemento -> NUM .)
+
+
+state 7
+
+    (6) Elemento -> START .
+
+    FECHAR          reduce using rule 6 (Elemento -> START .)
+    SEP             reduce using rule 6 (Elemento -> START .)
+
+
+state 8
+
+    (7) Elemento -> END .
+
+    FECHAR          reduce using rule 7 (Elemento -> END .)
+    SEP             reduce using rule 7 (Elemento -> END .)
+
+
+state 9
+
+    (1) Lista -> ABRIR Elementos FECHAR .
+
+    $end            reduce using rule 1 (Lista -> ABRIR Elementos FECHAR .)
+
+
+state 10
+
+    (2) Elementos -> Elementos SEP . Elemento
+    (5) Elemento -> . NUM
+    (6) Elemento -> . START
+    (7) Elemento -> . END
+
+    NUM             shift and go to state 6
+    START           shift and go to state 7
+    END             shift and go to state 8
+
+    Elemento                       shift and go to state 11
+
+state 11
+
+    (2) Elementos -> Elementos SEP Elemento .
+
+    FECHAR          reduce using rule 2 (Elementos -> Elementos SEP Elemento .)
+    SEP             reduce using rule 2 (Elementos -> Elementos SEP Elemento .)
+
