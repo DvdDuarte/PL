@@ -30,7 +30,7 @@ def p_Frase(p):
     "Frase : Elementos"
 
 def p_Elementos(p):
-    "Elementos: Elementos OP Elemento"
+    "Elementos : Elementos OP Elemento"
     # print(p[1],p[2],p[3])
     if(p[1]):
     # Pegar nos elementos abaixo e efetuar a op de acordo com o OP
@@ -45,10 +45,10 @@ def p_Elementos(p):
             parser.output += int(p[3])
 
 def p_Elementos_simples(p):
-    "Elementos: Elemento"
+    "Elementos : Elemento"
 
 def p_Elemento(p):
-    "Elemento: NUM"
+    "Elemento : NUM"
     print(p[1])
     p[0] = p[1]
 
