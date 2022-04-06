@@ -1,0 +1,229 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> Frase
+Rule 1     Frase -> Elementos
+Rule 2     Elementos -> Elementos MAI Elementos
+Rule 3     Elementos -> Elementos MEN Elementos
+Rule 4     Elementos -> Elementos MUL Elementos
+Rule 5     Elementos -> Elementos DIV Elementos
+Rule 6     Elementos -> Expressao
+Rule 7     Expressao -> NUM
+
+Terminals, with rules where they appear
+
+DIV                  : 5
+MAI                  : 2
+MEN                  : 3
+MUL                  : 4
+NUM                  : 7
+error                : 
+
+Nonterminals, with rules where they appear
+
+Elementos            : 1 2 2 3 3 4 4 5 5
+Expressao            : 6
+Frase                : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Frase
+    (1) Frase -> . Elementos
+    (2) Elementos -> . Elementos MAI Elementos
+    (3) Elementos -> . Elementos MEN Elementos
+    (4) Elementos -> . Elementos MUL Elementos
+    (5) Elementos -> . Elementos DIV Elementos
+    (6) Elementos -> . Expressao
+    (7) Expressao -> . NUM
+
+    NUM             shift and go to state 4
+
+    Frase                          shift and go to state 1
+    Elementos                      shift and go to state 2
+    Expressao                      shift and go to state 3
+
+state 1
+
+    (0) S' -> Frase .
+
+
+
+state 2
+
+    (1) Frase -> Elementos .
+    (2) Elementos -> Elementos . MAI Elementos
+    (3) Elementos -> Elementos . MEN Elementos
+    (4) Elementos -> Elementos . MUL Elementos
+    (5) Elementos -> Elementos . DIV Elementos
+
+    $end            reduce using rule 1 (Frase -> Elementos .)
+    MAI             shift and go to state 5
+    MEN             shift and go to state 6
+    MUL             shift and go to state 7
+    DIV             shift and go to state 8
+
+
+state 3
+
+    (6) Elementos -> Expressao .
+
+    MAI             reduce using rule 6 (Elementos -> Expressao .)
+    MEN             reduce using rule 6 (Elementos -> Expressao .)
+    MUL             reduce using rule 6 (Elementos -> Expressao .)
+    DIV             reduce using rule 6 (Elementos -> Expressao .)
+    $end            reduce using rule 6 (Elementos -> Expressao .)
+
+
+state 4
+
+    (7) Expressao -> NUM .
+
+    MAI             reduce using rule 7 (Expressao -> NUM .)
+    MEN             reduce using rule 7 (Expressao -> NUM .)
+    MUL             reduce using rule 7 (Expressao -> NUM .)
+    DIV             reduce using rule 7 (Expressao -> NUM .)
+    $end            reduce using rule 7 (Expressao -> NUM .)
+
+
+state 5
+
+    (2) Elementos -> Elementos MAI . Elementos
+    (2) Elementos -> . Elementos MAI Elementos
+    (3) Elementos -> . Elementos MEN Elementos
+    (4) Elementos -> . Elementos MUL Elementos
+    (5) Elementos -> . Elementos DIV Elementos
+    (6) Elementos -> . Expressao
+    (7) Expressao -> . NUM
+
+    NUM             shift and go to state 4
+
+    Elementos                      shift and go to state 9
+    Expressao                      shift and go to state 3
+
+state 6
+
+    (3) Elementos -> Elementos MEN . Elementos
+    (2) Elementos -> . Elementos MAI Elementos
+    (3) Elementos -> . Elementos MEN Elementos
+    (4) Elementos -> . Elementos MUL Elementos
+    (5) Elementos -> . Elementos DIV Elementos
+    (6) Elementos -> . Expressao
+    (7) Expressao -> . NUM
+
+    NUM             shift and go to state 4
+
+    Elementos                      shift and go to state 10
+    Expressao                      shift and go to state 3
+
+state 7
+
+    (4) Elementos -> Elementos MUL . Elementos
+    (2) Elementos -> . Elementos MAI Elementos
+    (3) Elementos -> . Elementos MEN Elementos
+    (4) Elementos -> . Elementos MUL Elementos
+    (5) Elementos -> . Elementos DIV Elementos
+    (6) Elementos -> . Expressao
+    (7) Expressao -> . NUM
+
+    NUM             shift and go to state 4
+
+    Elementos                      shift and go to state 11
+    Expressao                      shift and go to state 3
+
+state 8
+
+    (5) Elementos -> Elementos DIV . Elementos
+    (2) Elementos -> . Elementos MAI Elementos
+    (3) Elementos -> . Elementos MEN Elementos
+    (4) Elementos -> . Elementos MUL Elementos
+    (5) Elementos -> . Elementos DIV Elementos
+    (6) Elementos -> . Expressao
+    (7) Expressao -> . NUM
+
+    NUM             shift and go to state 4
+
+    Elementos                      shift and go to state 12
+    Expressao                      shift and go to state 3
+
+state 9
+
+    (2) Elementos -> Elementos MAI Elementos .
+    (2) Elementos -> Elementos . MAI Elementos
+    (3) Elementos -> Elementos . MEN Elementos
+    (4) Elementos -> Elementos . MUL Elementos
+    (5) Elementos -> Elementos . DIV Elementos
+
+    MAI             reduce using rule 2 (Elementos -> Elementos MAI Elementos .)
+    MEN             reduce using rule 2 (Elementos -> Elementos MAI Elementos .)
+    $end            reduce using rule 2 (Elementos -> Elementos MAI Elementos .)
+    MUL             shift and go to state 7
+    DIV             shift and go to state 8
+
+  ! MUL             [ reduce using rule 2 (Elementos -> Elementos MAI Elementos .) ]
+  ! DIV             [ reduce using rule 2 (Elementos -> Elementos MAI Elementos .) ]
+  ! MAI             [ shift and go to state 5 ]
+  ! MEN             [ shift and go to state 6 ]
+
+
+state 10
+
+    (3) Elementos -> Elementos MEN Elementos .
+    (2) Elementos -> Elementos . MAI Elementos
+    (3) Elementos -> Elementos . MEN Elementos
+    (4) Elementos -> Elementos . MUL Elementos
+    (5) Elementos -> Elementos . DIV Elementos
+
+    MAI             reduce using rule 3 (Elementos -> Elementos MEN Elementos .)
+    MEN             reduce using rule 3 (Elementos -> Elementos MEN Elementos .)
+    $end            reduce using rule 3 (Elementos -> Elementos MEN Elementos .)
+    MUL             shift and go to state 7
+    DIV             shift and go to state 8
+
+  ! MUL             [ reduce using rule 3 (Elementos -> Elementos MEN Elementos .) ]
+  ! DIV             [ reduce using rule 3 (Elementos -> Elementos MEN Elementos .) ]
+  ! MAI             [ shift and go to state 5 ]
+  ! MEN             [ shift and go to state 6 ]
+
+
+state 11
+
+    (4) Elementos -> Elementos MUL Elementos .
+    (2) Elementos -> Elementos . MAI Elementos
+    (3) Elementos -> Elementos . MEN Elementos
+    (4) Elementos -> Elementos . MUL Elementos
+    (5) Elementos -> Elementos . DIV Elementos
+
+    MAI             reduce using rule 4 (Elementos -> Elementos MUL Elementos .)
+    MEN             reduce using rule 4 (Elementos -> Elementos MUL Elementos .)
+    MUL             reduce using rule 4 (Elementos -> Elementos MUL Elementos .)
+    DIV             reduce using rule 4 (Elementos -> Elementos MUL Elementos .)
+    $end            reduce using rule 4 (Elementos -> Elementos MUL Elementos .)
+
+  ! MAI             [ shift and go to state 5 ]
+  ! MEN             [ shift and go to state 6 ]
+  ! MUL             [ shift and go to state 7 ]
+  ! DIV             [ shift and go to state 8 ]
+
+
+state 12
+
+    (5) Elementos -> Elementos DIV Elementos .
+    (2) Elementos -> Elementos . MAI Elementos
+    (3) Elementos -> Elementos . MEN Elementos
+    (4) Elementos -> Elementos . MUL Elementos
+    (5) Elementos -> Elementos . DIV Elementos
+
+    MAI             reduce using rule 5 (Elementos -> Elementos DIV Elementos .)
+    MEN             reduce using rule 5 (Elementos -> Elementos DIV Elementos .)
+    MUL             reduce using rule 5 (Elementos -> Elementos DIV Elementos .)
+    DIV             reduce using rule 5 (Elementos -> Elementos DIV Elementos .)
+    $end            reduce using rule 5 (Elementos -> Elementos DIV Elementos .)
+
+  ! MAI             [ shift and go to state 5 ]
+  ! MEN             [ shift and go to state 6 ]
+  ! MUL             [ shift and go to state 7 ]
+  ! DIV             [ shift and go to state 8 ]
+
