@@ -7,7 +7,7 @@ tokens = ['CHAVEDIR','CHAVEESQ','ID', 'SEP']
 
 t_CHAVEDIR = r'\{'
 t_CHAVEESQ = r'\}'
-t_ID = r'\w+'
+t_ID = r'[A-Z|a-z|\-|0-9]+'
 t_SEP = R'\,'
 
 t_ignore = " \t\n"

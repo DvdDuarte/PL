@@ -22,54 +22,47 @@ from lexer import tokens
 
 def p_frase(p):
     "Frase : Elementos"
+    print(parser.instrucoes)
+
 
 def p_elementos(p):
     "Elementos : Elementos Folder"
+    parser.instrucoes = p[1] + p[2]
 
 def p_elemento_folder_unica(p):
     "Elementos : Folder"
+    parser.instrucoes = p[1]
 
 def p_folder_vazia(p):
     "Folder : ID CHAVEDIR empty CHAVEESQ"
-    folder_name = p[1]
-    if parser.instrucoes == "":
-        parser.instrucoes += "mkdir " + folder_name + "; cd " + folder_name + "; cd .." + ";"
-    else: parser.instrucoes += " mkdir " + folder_name + "; cd " + folder_name + "; cd .." + ";"
+    p[0] = " mkdir " + p[1] + "; cd " + p[1] + "; cd ..; "
+
 
 def p_folder_multfolder(p):
     "Folder : ID CHAVEDIR Subfolder CHAVEESQ"
-    folder_name = p[1]
-    if parser.instrucoes == "":
-        parser.instrucoes += "mkdir " + folder_name + "; cd " + folder_name + ";"
-    else: parser.instrucoes += " mkdir " + folder_name + "; cd " + folder_name + ";"
+    p[0] = " mkdir " + p[1] + "; cd " + p[1] + ";" + p[3] + "cd ..; "
 
 
 def p_subfolder_empty(p):
     "Subfolder : Folder"
+    p[0] = p[1]
 
 def p_subfolder(p):
-    "Subfolder : Folder SEP Folder"
+    "Subfolder : Subfolder SEP Folder"
+    p[0] = p[1] + p[3]
 
 
 def p_folder_ficheiro(p):
     "Folder : ID CHAVEDIR Ficheiro CHAVEESQ"
-    folder_name = p[1]
-    if parser.instrucoes == "":
-        parser.instrucoes += "mkdir " + folder_name + "; cd " + folder_name + ";"
-    else: parser.instrucoes += " mkdir " + folder_name + "; cd " + folder_name + ";"
+    p[0] = " mkdir " + p[1] + "; cd " + p[1] + ";" + p[3] + " cd ..; "
 
 def p_ficheiro(p):
     "Ficheiro : ID"
-    filename = p[1]
-    parser.instrucoes += "touch " + filename + ";"
+    p[0] = " touch " + p[1] + ";"
 
 def p_ficheiros(p):
     "Ficheiro : Ficheiro SEP ID"
-    filename = p[3]
-    if parser.instrucoes == "":
-        parser.instrucoes += "touch " + filename + ";"
-    else: parser.instrucoes += "touch " + filename + ";"
-
+    p[0] = p[1] + " touch " + p[3] + ";"
 
 def p_error(p):
     print('Erro sintático: ', p)
@@ -83,14 +76,22 @@ def p_empty(p):
 parser = yacc.yacc()
 
 # Read line from input and parse it
+
 import sys
-for linha in sys.stdin:
-    parser.success = True
-    parser.instrucoes = ""
-    parser.total = 0
-    parser.parse(linha)
-    if parser.success:
-        # print("Frase válida!")
-        print(parser.instrucoes)
-    else:
-        print("Frase inválida... Corrija e tente novamente!")
+txt = open(sys.argv[1]).read()
+parser.parse(txt)
+
+# for linha in sys.stdin:
+#     parser.success = True
+#     parser.instrucoes = ""
+#     parser.total = 0
+#     parser.parse(linha)
+#     if parser.success:
+#         #print("---------------------------------------------------------------------------------")
+#         #print("Comando Inserido: ", linha)
+#         print(parser.instrucoes)
+#         #print("---------------------------------------------------------------------------------")
+#     else:
+#         #print("---------------------------------------------------------------------------------")
+#         print("Frase inválida... Corrija e tente novamente!")
+#         #print("---------------------------------------------------------------------------------")

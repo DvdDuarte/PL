@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'CHAVEDIR CHAVEESQ ID SEPFrase : ElementosElementos : Elementos FolderElementos : FolderFolder : ID CHAVEDIR empty CHAVEESQFolder : ID CHAVEDIR Subfolder CHAVEESQSubfolder : FolderSubfolder : Folder SEP FolderFolder : ID CHAVEDIR Ficheiro CHAVEESQFicheiro : IDFicheiro : Ficheiro SEP IDempty :'
+_lr_signature = 'CHAVEDIR CHAVEESQ ID SEPFrase : ElementosElementos : Elementos FolderElementos : FolderFolder : ID CHAVEDIR empty CHAVEESQFolder : ID CHAVEDIR Subfolder CHAVEESQSubfolder : FolderSubfolder : Subfolder SEP FolderFolder : ID CHAVEDIR Ficheiro CHAVEESQFicheiro : IDFicheiro : Ficheiro SEP IDempty :'
     
-_lr_action_items = {'ID':([0,2,3,5,6,12,13,14,15,16,],[4,4,-3,-2,7,-4,-5,-8,17,4,]),'$end':([1,2,3,5,12,13,14,],[0,-1,-3,-2,-4,-5,-8,]),'CHAVEDIR':([4,7,],[6,6,]),'CHAVEESQ':([6,7,8,9,10,11,12,13,14,17,18,],[-11,-9,12,13,14,-6,-4,-5,-8,-10,-7,]),'SEP':([7,10,11,12,13,14,17,],[-9,15,16,-4,-5,-8,-10,]),}
+_lr_action_items = {'ID':([0,2,3,5,6,12,13,14,15,16,],[4,4,-3,-2,7,-4,-5,4,-8,18,]),'$end':([1,2,3,5,12,13,15,],[0,-1,-3,-2,-4,-5,-8,]),'CHAVEDIR':([4,7,],[6,6,]),'CHAVEESQ':([6,7,8,9,10,11,12,13,15,17,18,],[-11,-9,12,13,15,-6,-4,-5,-8,-7,-10,]),'SEP':([7,9,10,11,12,13,15,17,18,],[-9,14,16,-6,-4,-5,-8,-7,-10,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'Frase':([0,],[1,]),'Elementos':([0,],[2,]),'Folder':([0,2,6,16,],[3,5,11,18,]),'empty':([6,],[8,]),'Subfolder':([6,],[9,]),'Ficheiro':([6,],[10,]),}
+_lr_goto_items = {'Frase':([0,],[1,]),'Elementos':([0,],[2,]),'Folder':([0,2,6,14,],[3,5,11,17,]),'empty':([6,],[8,]),'Subfolder':([6,],[9,]),'Ficheiro':([6,],[10,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -29,13 +29,13 @@ _lr_productions = [
   ("S' -> Frase","S'",1,None,None,None),
   ('Frase -> Elementos','Frase',1,'p_frase','parser.py',24),
   ('Elementos -> Elementos Folder','Elementos',2,'p_elementos','parser.py',27),
-  ('Elementos -> Folder','Elementos',1,'p_elemento_folder_unica','parser.py',30),
-  ('Folder -> ID CHAVEDIR empty CHAVEESQ','Folder',4,'p_folder_vazia','parser.py',33),
+  ('Elementos -> Folder','Elementos',1,'p_elemento_folder_unica','parser.py',31),
+  ('Folder -> ID CHAVEDIR empty CHAVEESQ','Folder',4,'p_folder_vazia','parser.py',35),
   ('Folder -> ID CHAVEDIR Subfolder CHAVEESQ','Folder',4,'p_folder_multfolder','parser.py',40),
-  ('Subfolder -> Folder','Subfolder',1,'p_subfolder_empty','parser.py',48),
-  ('Subfolder -> Folder SEP Folder','Subfolder',3,'p_subfolder','parser.py',51),
-  ('Folder -> ID CHAVEDIR Ficheiro CHAVEESQ','Folder',4,'p_folder_ficheiro','parser.py',55),
-  ('Ficheiro -> ID','Ficheiro',1,'p_ficheiro','parser.py',62),
-  ('Ficheiro -> Ficheiro SEP ID','Ficheiro',3,'p_ficheiros','parser.py',67),
-  ('empty -> <empty>','empty',0,'p_empty','parser.py',79),
+  ('Subfolder -> Folder','Subfolder',1,'p_subfolder_empty','parser.py',45),
+  ('Subfolder -> Subfolder SEP Folder','Subfolder',3,'p_subfolder','parser.py',49),
+  ('Folder -> ID CHAVEDIR Ficheiro CHAVEESQ','Folder',4,'p_folder_ficheiro','parser.py',54),
+  ('Ficheiro -> ID','Ficheiro',1,'p_ficheiro','parser.py',58),
+  ('Ficheiro -> Ficheiro SEP ID','Ficheiro',3,'p_ficheiros','parser.py',62),
+  ('empty -> <empty>','empty',0,'p_empty','parser.py',70),
 ]

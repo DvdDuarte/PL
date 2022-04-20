@@ -9,7 +9,7 @@ Rule 3     Elementos -> Folder
 Rule 4     Folder -> ID CHAVEDIR empty CHAVEESQ
 Rule 5     Folder -> ID CHAVEDIR Subfolder CHAVEESQ
 Rule 6     Subfolder -> Folder
-Rule 7     Subfolder -> Folder SEP Folder
+Rule 7     Subfolder -> Subfolder SEP Folder
 Rule 8     Folder -> ID CHAVEDIR Ficheiro CHAVEESQ
 Rule 9     Ficheiro -> ID
 Rule 10    Ficheiro -> Ficheiro SEP ID
@@ -27,9 +27,9 @@ Nonterminals, with rules where they appear
 
 Elementos            : 1 2
 Ficheiro             : 8 10
-Folder               : 2 3 6 7 7
+Folder               : 2 3 6 7
 Frase                : 0
-Subfolder            : 5
+Subfolder            : 5 7
 empty                : 4
 
 Parsing method: LALR
@@ -101,7 +101,7 @@ state 6
     (8) Folder -> ID CHAVEDIR . Ficheiro CHAVEESQ
     (11) empty -> .
     (6) Subfolder -> . Folder
-    (7) Subfolder -> . Folder SEP Folder
+    (7) Subfolder -> . Subfolder SEP Folder
     (9) Ficheiro -> . ID
     (10) Ficheiro -> . Ficheiro SEP ID
     (4) Folder -> . ID CHAVEDIR empty CHAVEESQ
@@ -138,8 +138,10 @@ state 8
 state 9
 
     (5) Folder -> ID CHAVEDIR Subfolder . CHAVEESQ
+    (7) Subfolder -> Subfolder . SEP Folder
 
     CHAVEESQ        shift and go to state 13
+    SEP             shift and go to state 14
 
 
 state 10
@@ -147,17 +149,16 @@ state 10
     (8) Folder -> ID CHAVEDIR Ficheiro . CHAVEESQ
     (10) Ficheiro -> Ficheiro . SEP ID
 
-    CHAVEESQ        shift and go to state 14
-    SEP             shift and go to state 15
+    CHAVEESQ        shift and go to state 15
+    SEP             shift and go to state 16
 
 
 state 11
 
     (6) Subfolder -> Folder .
-    (7) Subfolder -> Folder . SEP Folder
 
     CHAVEESQ        reduce using rule 6 (Subfolder -> Folder .)
-    SEP             shift and go to state 16
+    SEP             reduce using rule 6 (Subfolder -> Folder .)
 
 
 state 12
@@ -166,8 +167,8 @@ state 12
 
     ID              reduce using rule 4 (Folder -> ID CHAVEDIR empty CHAVEESQ .)
     $end            reduce using rule 4 (Folder -> ID CHAVEDIR empty CHAVEESQ .)
-    SEP             reduce using rule 4 (Folder -> ID CHAVEDIR empty CHAVEESQ .)
     CHAVEESQ        reduce using rule 4 (Folder -> ID CHAVEDIR empty CHAVEESQ .)
+    SEP             reduce using rule 4 (Folder -> ID CHAVEDIR empty CHAVEESQ .)
 
 
 state 13
@@ -176,49 +177,50 @@ state 13
 
     ID              reduce using rule 5 (Folder -> ID CHAVEDIR Subfolder CHAVEESQ .)
     $end            reduce using rule 5 (Folder -> ID CHAVEDIR Subfolder CHAVEESQ .)
-    SEP             reduce using rule 5 (Folder -> ID CHAVEDIR Subfolder CHAVEESQ .)
     CHAVEESQ        reduce using rule 5 (Folder -> ID CHAVEDIR Subfolder CHAVEESQ .)
+    SEP             reduce using rule 5 (Folder -> ID CHAVEDIR Subfolder CHAVEESQ .)
 
 
 state 14
 
-    (8) Folder -> ID CHAVEDIR Ficheiro CHAVEESQ .
-
-    ID              reduce using rule 8 (Folder -> ID CHAVEDIR Ficheiro CHAVEESQ .)
-    $end            reduce using rule 8 (Folder -> ID CHAVEDIR Ficheiro CHAVEESQ .)
-    SEP             reduce using rule 8 (Folder -> ID CHAVEDIR Ficheiro CHAVEESQ .)
-    CHAVEESQ        reduce using rule 8 (Folder -> ID CHAVEDIR Ficheiro CHAVEESQ .)
-
-
-state 15
-
-    (10) Ficheiro -> Ficheiro SEP . ID
-
-    ID              shift and go to state 17
-
-
-state 16
-
-    (7) Subfolder -> Folder SEP . Folder
+    (7) Subfolder -> Subfolder SEP . Folder
     (4) Folder -> . ID CHAVEDIR empty CHAVEESQ
     (5) Folder -> . ID CHAVEDIR Subfolder CHAVEESQ
     (8) Folder -> . ID CHAVEDIR Ficheiro CHAVEESQ
 
     ID              shift and go to state 4
 
-    Folder                         shift and go to state 18
+    Folder                         shift and go to state 17
+
+state 15
+
+    (8) Folder -> ID CHAVEDIR Ficheiro CHAVEESQ .
+
+    ID              reduce using rule 8 (Folder -> ID CHAVEDIR Ficheiro CHAVEESQ .)
+    $end            reduce using rule 8 (Folder -> ID CHAVEDIR Ficheiro CHAVEESQ .)
+    CHAVEESQ        reduce using rule 8 (Folder -> ID CHAVEDIR Ficheiro CHAVEESQ .)
+    SEP             reduce using rule 8 (Folder -> ID CHAVEDIR Ficheiro CHAVEESQ .)
+
+
+state 16
+
+    (10) Ficheiro -> Ficheiro SEP . ID
+
+    ID              shift and go to state 18
+
 
 state 17
+
+    (7) Subfolder -> Subfolder SEP Folder .
+
+    CHAVEESQ        reduce using rule 7 (Subfolder -> Subfolder SEP Folder .)
+    SEP             reduce using rule 7 (Subfolder -> Subfolder SEP Folder .)
+
+
+state 18
 
     (10) Ficheiro -> Ficheiro SEP ID .
 
     CHAVEESQ        reduce using rule 10 (Ficheiro -> Ficheiro SEP ID .)
     SEP             reduce using rule 10 (Ficheiro -> Ficheiro SEP ID .)
-
-
-state 18
-
-    (7) Subfolder -> Folder SEP Folder .
-
-    CHAVEESQ        reduce using rule 7 (Subfolder -> Folder SEP Folder .)
 
